@@ -1,0 +1,70 @@
+body {
+  font-family: 'myriad pro', sans-serif;
+  font-size: 20px;
+  border: 0;
+}
+
+basket {
+  display: block;
+  min-height: 200px;
+}
+
+.product {
+  float: left;
+  list-style: none;
+  display: block;
+  min-height: 300px;
+  width: 200px;
+  border: 1px solid blue;
+  padding: 10px;
+  margin: 10px;
+}
+.product-name {
+  min-height: 100px;
+}
+.basket-entry {
+  list-style: none;
+}
+
+.basket-name, .basket-price, .basket-quantity {
+  display: inline-block;
+}
+.basket-name {
+  min-width: 400px;
+}
+.basket-price {
+  min-width: 100px;
+}
+.basket-quantity {
+  min-width: 100px;
+}
+
+button {
+  background-color: #1FADC5;
+  border: 1px solid rgba(0,0,0,.2);
+  font-size: 75%;
+  color: #fff;
+  padding: .4em 1.2em;
+  border-radius: 2em;
+  cursor: pointer;
+  margin: 0 .23em;
+  outline: none;
+}
+
+button[disabled] {
+  background-color: #ddd;
+  color: #aaa;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+  padding: .2em 0;
+}
+
+label {
+  cursor: pointer;
+}

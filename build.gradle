@@ -1,0 +1,61 @@
+
+plugins {
+  id 'java'
+  id 'jetty'
+}
+
+repositories {
+  mavenCentral()
+}
+
+configurations {
+    fitnesseRuntime
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+    testCompile "org.hamcrest:hamcrest-all:1.3"
+
+    fitnesseRuntime 'org.fitnesse:fitnesse:20160515'
+}
+
+task runFitNesse(type: JavaExec) {
+    dependsOn classes
+    classpath = sourceSets.main.runtimeClasspath + configurations.fitnesseRuntime
+    main "fitnesseMain.FitNesseMain"
+    args "-p", "8000", "-e", "0"
+}
+
+task runWeb(type: JettyRun) {
+  httpPort 8000
+  webAppSourceDirectory file('src/main/web')
+  contextPath ""
+}
+
+wrapper {
+  gradleVersion = '2.13'
+}
+
+
+class WriteFitNesseClasspath extends DefaultTask {
+  @Input
+  def classpath
+
+  @OutputDirectory
+  File pagePath
+
+  @TaskAction
+  def generatePage() {
+    def contentTxt = project.file("${pagePath}/content.txt")
+    contentTxt.createNewFile()
+    contentTxt.withWriter { writer ->
+      writer.writeLine("!path ${project.sourceSets.main.output.classesDir}")
+      writer.writeLine("!path ${project.sourceSets.test.output.classesDir}")
+      writer.writeLine("!path src/main/resources")
+      writer.writeLine("!path src/test/resources")
+      classpath.each { d ->
+        writer.writeLine("!path $d")
+      }
+    }
+  }
+}
