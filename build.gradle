@@ -25,6 +25,7 @@ dependencies {
   // JGiven
   testCompile 'com.tngtech.jgiven:jgiven-junit:0.11.3'
   testCompile 'com.tngtech.jgiven:jgiven-html5-report:0.11.3'
+  testCompile 'org.slf4j:slf4j-simple:1.7.21'
 
   // Cucumber
   testCompile "info.cukes:cucumber-java:1.2.4"
@@ -32,6 +33,13 @@ dependencies {
   // FitNesse
   fitnesseRuntime 'org.fitnesse:fitnesse:20160515'
 }
+
+task jgivenReport(type: JavaExec, dependsOn: 'test') {
+  main = 'com.tngtech.jgiven.report.ReportGenerator'
+  args '--targetDir=build/jgiven-reports', '--format=html'
+  classpath = configurations.testCompile
+}
+check.dependsOn jgivenReport
 
 task cucumber() {
   dependsOn assemble, compileTestJava
@@ -44,14 +52,14 @@ task cucumber() {
   }
 }
 
-task runFitNesse(type: JavaExec) {
+task fitnesse(type: JavaExec) {
   dependsOn classes
   classpath = sourceSets.main.runtimeClasspath + configurations.fitnesseRuntime
   main "fitnesseMain.FitNesseMain"
   args "-p", "8000", "-e", "0"
 }
 
-task runWeb(type: JettyRun) {
+task web(type: JettyRun) {
   httpPort 8000
   webAppSourceDirectory file('src/main/web')
   contextPath ""
