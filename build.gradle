@@ -9,21 +9,46 @@ repositories {
 }
 
 configurations {
-    fitnesseRuntime
+  fitnesseRuntime
+}
+
+// For educational purposes, put Cucumber code in a separate folder.
+sourceSets.test {
+  java.srcDir 'src/cucumber/stepdefs'
+  resources.srcDir 'src/cucumber/features'
 }
 
 dependencies {
-    testCompile 'junit:junit:4.12'
-    testCompile "org.hamcrest:hamcrest-all:1.3"
+  testCompile 'junit:junit:4.12'
+  testCompile "org.hamcrest:hamcrest-all:1.3"
 
-    fitnesseRuntime 'org.fitnesse:fitnesse:20160515'
+  // JGiven
+  testCompile 'com.tngtech.jgiven:jgiven-junit:0.11.3'
+  testCompile 'com.tngtech.jgiven:jgiven-html5-report:0.11.3'
+
+  // Cucumber
+  testCompile "info.cukes:cucumber-java:1.2.4"
+
+  // FitNesse
+  fitnesseRuntime 'org.fitnesse:fitnesse:20160515'
+}
+
+task cucumber() {
+  dependsOn assemble, compileTestJava
+  doLast {
+    javaexec {
+      main = "cucumber.api.cli.Main"
+      classpath = configurations.testRuntime + sourceSets.main.output + sourceSets.test.output
+      args = ['--plugin', 'pretty', '--glue', 'com.xebia.tatraining.cucumber', 'src/cucumber/features']
+    }
+  }
 }
 
 task runFitNesse(type: JavaExec) {
-    dependsOn classes
-    classpath = sourceSets.main.runtimeClasspath + configurations.fitnesseRuntime
-    main "fitnesseMain.FitNesseMain"
-    args "-p", "8000", "-e", "0"
+  dependsOn classes
+  classpath = sourceSets.main.runtimeClasspath + configurations.fitnesseRuntime
+  main "fitnesseMain.FitNesseMain"
+  args "-p", "8000", "-e", "0"
 }
 
 task runWeb(type: JettyRun) {
