@@ -20,7 +20,7 @@
         renderPrice(price) {
             return price.toFixed(2);
         }
-        
+
         remove(e) {
             this.basket.remove(e.item.product);
         }
