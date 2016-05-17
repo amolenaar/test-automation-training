@@ -1,0 +1,14 @@
+The Web shop has the following features:
+
+ * [[Free shipping for orders above 25 Euro][>FreeShipping]]
+
+
+!*> technical setup
+
+Make sure we use the Slim test system
+!define TEST_SYSTEM {slim}
+
+Define our class path:
+!include -seamless .GradleClasspath
+
+*!

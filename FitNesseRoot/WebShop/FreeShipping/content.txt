@@ -1,0 +1,7 @@
+Free shipping is eligible for orders of 25.00 euro and above.
+
+|Free shipping        |
+|amount|free shipping?|
+|20    |no            |
+|30    |yes           |
+

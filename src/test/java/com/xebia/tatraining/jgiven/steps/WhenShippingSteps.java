@@ -19,6 +19,7 @@ public class WhenShippingSteps extends Stage<WhenShippingSteps> {
     @As("the order is made")
     public void the_order_is_made() {
         basket = new Basket();
-        basket.addToBasket(new Product("dummy", Price.of(amount), Category.BOOKS), 1);
+        Product product = new Product("dummy", Price.of(amount), Category.BOOKS);
+        basket.addToBasket(product, 1);
     }
 }

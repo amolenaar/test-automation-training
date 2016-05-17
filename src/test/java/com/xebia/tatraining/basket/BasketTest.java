@@ -1,14 +1,12 @@
 package com.xebia.tatraining.basket;
 
-import java.math.BigDecimal;
 import org.junit.Test;
-
 import com.xebia.tatraining.catalog.Category;
 import com.xebia.tatraining.catalog.Price;
 import com.xebia.tatraining.catalog.Product;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 public class BasketTest {
 

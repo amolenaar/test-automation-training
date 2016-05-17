@@ -9,7 +9,7 @@ import com.xebia.tatraining.jgiven.steps.WhenShippingSteps;
 /**
  * JGiven exercise.
  */
-public class FreeShipping extends
+public class FreeShippingTest extends
         ScenarioTest<GivenShippingSteps, WhenShippingSteps, ThenShippingSteps> {
 
     @Test

@@ -52,9 +52,21 @@ task cucumber() {
   }
 }
 
+task writeFitNesseClasspath(type: WriteFitNesseClasspath) {
+  classpath = sourceSets.main.output + sourceSets.test.output + project.configurations.testRuntime
+      pagePath = project.file("FitNesseRoot/GradleClasspath")
+}
+
 task fitnesse(type: JavaExec) {
-  dependsOn classes
-  classpath = sourceSets.main.runtimeClasspath + configurations.fitnesseRuntime
+  dependsOn testClasses, writeFitNesseClasspath
+  classpath = configurations.fitnesseRuntime
+  main "fitnesseMain.FitNesseMain"
+  args "-c", "WebShop?suite&format=text"
+}
+
+task fitnesseWiki(type: JavaExec) {
+  dependsOn testClasses, writeFitNesseClasspath
+  classpath = configurations.fitnesseRuntime
   main "fitnesseMain.FitNesseMain"
   args "-p", "8000", "-e", "0"
 }
@@ -82,10 +94,6 @@ class WriteFitNesseClasspath extends DefaultTask {
     def contentTxt = project.file("${pagePath}/content.txt")
     contentTxt.createNewFile()
     contentTxt.withWriter { writer ->
-      writer.writeLine("!path ${project.sourceSets.main.output.classesDir}")
-      writer.writeLine("!path ${project.sourceSets.test.output.classesDir}")
-      writer.writeLine("!path src/main/resources")
-      writer.writeLine("!path src/test/resources")
       classpath.each { d ->
         writer.writeLine("!path $d")
       }
