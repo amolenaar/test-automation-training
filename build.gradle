@@ -22,6 +22,9 @@ dependencies {
   testCompile 'junit:junit:4.12'
   testCompile "org.hamcrest:hamcrest-all:1.3"
 
+  // Selenium
+  testCompile "org.seleniumhq.selenium:selenium-java:2.53.0"
+
   // JGiven
   testCompile 'com.tngtech.jgiven:jgiven-junit:0.11.3'
   testCompile 'com.tngtech.jgiven:jgiven-html5-report:0.11.3'
