@@ -1,0 +1,7 @@
+[Desktop Entry]
+Comment=IntelliJ IDEA
+Terminal=false
+Name=IntelliJ IDEA
+Exec=/opt/idea-IC-145.972.3/bin/idea.sh
+Type=Application
+Icon=gnome-panel-launcher

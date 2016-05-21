@@ -12,3 +12,5 @@ FitNesseRoot/RecentChanges/
 FitNesseRoot/TemplateLibrary/
 FitNesseRoot/files/
 FitNesseRoot/properties
+.vagrant
+tmp
