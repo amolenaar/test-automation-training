@@ -7,17 +7,4 @@ import com.xebia.tatraining.catalog.Product;
 
 public class FreeShipping {
 
-    private Basket basket;
-
-    public void reset() {
-        basket = new Basket();
-    }
-    public void setAmount(final double amount) {
-        Product product = new Product("dummy", Price.of(amount), Category.BOOKS);
-        basket.addToBasket(product, 1);
-    }
-
-    public String freeShipping() {
-        return basket.hasFreeShipping() ? "yes" : "no";
-    }
 }
