@@ -13,6 +13,7 @@ public class FreeShippingWeb {
 
     public void beginTable() {
         driver = new FirefoxDriver();
+        driver.get("http://localhost:8000");
     }
 
     public void endTable() {
@@ -20,22 +21,24 @@ public class FreeShippingWeb {
     }
 
     public void reset() {
-        driver.get("http://localhost:8000");
+        driver.navigate().refresh();
     }
 
-    public void setAmount(final double amount) {
+    public void setBooks(final int books) {
         final List<WebElement> products = driver.findElements(By.cssSelector(".product"));
-        products.get(0).findElement(By.tagName("a")).click();
+        for (int i = 0; i < books; i++) {
+            products.get(0).findElement(By.tagName("a" )).click();
+        }
     }
 
-    public String freeShipping() {
+    public String totalPrice() {
         driver.findElement(By.tagName("button")).click();
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
         Alert alert = wait.until(ExpectedConditions.alertIsPresent());
         String text = alert.getText();
         alert.accept();
-        return text;
+        return text.substring(13, text.length() - 1);
     }
 
 }

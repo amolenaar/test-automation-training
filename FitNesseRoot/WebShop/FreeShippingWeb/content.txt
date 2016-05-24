@@ -1,0 +1,7 @@
+Free shipping is eligible for orders of 25.00 euro and above.
+
+|Free shipping web |
+|books|total price?|
+|2    |20.00       |
+|3    |27.00       |
+
