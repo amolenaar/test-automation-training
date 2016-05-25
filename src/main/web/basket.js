@@ -26,15 +26,24 @@ function Basket() {
             }
         }
     };
-    self.checkout = function() {
+    self.contains = function(name) {
+        for (var index in self.entries) {
+            if (self.entries[index].product.name === name) {
+                return true;
+            }
+        }
+        return false;
+    };
+    self.totalPrice = function() {
         var total = 0;
         for (var index in self.entries) {
-            total += self.entries[index].quantity * self.entries[index].product.price;
+            console.log('add entry', index, self.entries[index].quantity * self.entries[index].product.price);
+            total = total + self.entries[index].quantity * self.entries[index].product.price;
         }
         if (total < 25) {
             // Add shipping costs:
             total += 2;
         }
-        alert('Total price: ' + total.toFixed(2) + '.');
+        return total;
     };
 }

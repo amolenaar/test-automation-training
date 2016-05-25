@@ -1,5 +1,5 @@
 <basket>
-    <h1>Your basket</h1>
+    <h1>Your basket <button disabled={ basket.entries.length == 0 } onclick={ checkout }>Checkout</button></h1>
 
     <ul>
         <li class="basket-entry" each={ basket.entries }>
@@ -10,7 +10,6 @@
         </li>
     </ul>
 
-    <button disabled={ basket.entries.length == 0 } onclick={ checkout }>Checkout</button>
 
     <script>
         this.basket = opts.basket;
@@ -27,7 +26,8 @@
 
         checkout() {
             console.log("Checkout!");
-            this.basket.checkout();
+            //this.basket.checkout();
+            window.location.hash = 'checkout';
         }
     </script>
 </basket>

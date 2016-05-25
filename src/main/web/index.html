@@ -8,13 +8,24 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <h1 class="logo" href="#" title="TA Training shop">TA Training shop</h1>
+    </header>
 
-    <basket></basket>
+    <article class="container">
+        <basket></basket>
 
-    <catalog></catalog>
+        <catalog></catalog>
+    </article>
+    <footer>
+        TA training webshop example
+    </footer>
+
+    <checkout></checkout>
 
     <script src="basket.tag" type="riot/tag"></script>
     <script src="catalog.tag" type="riot/tag"></script>
+    <script src="checkout.tag" type="riot/tag"></script>
 
     <script src="riot-compiler.min.js"></script>
     <script src="basket.js"></script>
@@ -34,6 +45,9 @@
             basket: basket
         });
         riot.mount('basket', {
+            basket: basket
+        });
+        riot.mount('checkout', {
             basket: basket
         });
     </script>
