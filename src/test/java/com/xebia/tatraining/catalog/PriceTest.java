@@ -10,10 +10,10 @@ public class PriceTest {
 
     @Test
     public void priceShouldBePrintedInCorrectFormat() {
-        assertThat(new Price(BigDecimal.valueOf(1.23)).toString(), is("EUR 1.23"));
-        assertThat(new Price(BigDecimal.valueOf(1.231)).toString(), is("EUR 1.23"));
-        assertThat(new Price(BigDecimal.valueOf(1.225)).toString(), is("EUR 1.23"));
-        assertThat(new Price(BigDecimal.valueOf(1.2349)).toString(), is("EUR 1.23"));
+        assertThat(new Price(BigDecimal.valueOf(1.23)).toString(), is("€ 1.23"));
+        assertThat(new Price(BigDecimal.valueOf(1.231)).toString(), is("€ 1.23"));
+        assertThat(new Price(BigDecimal.valueOf(1.225)).toString(), is("€ 1.23"));
+        assertThat(new Price(BigDecimal.valueOf(1.2349)).toString(), is("€ 1.23"));
     }
 
     @Test
