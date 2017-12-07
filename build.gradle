@@ -82,7 +82,7 @@ task web(type: JettyRun) {
 }
 
 wrapper {
-  gradleVersion = '2.13'
+  gradleVersion = '3.5.1'
 }
 
 
