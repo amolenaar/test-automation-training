@@ -16,3 +16,4 @@ jgiven-reports/
 .vagrant
 tmp
 out
+geckodriver*
