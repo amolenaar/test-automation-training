@@ -14,7 +14,11 @@ public class Price {
     private final Currency currency;
 
     public static Price of(double amount) {
-        return new Price(BigDecimal.valueOf(amount));
+        return Price.of(BigDecimal.valueOf(amount));
+    }
+
+    public static Price of(BigDecimal amount) {
+        return new Price(amount);
     }
 
     public Price(BigDecimal amount) {
